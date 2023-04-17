@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import axios from "axios";
 
@@ -25,9 +25,16 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    (window as any).Telegram.WebApp.expand();
+  }, [])
+
   return (
     <div className={'form-container'}>
       <input type="text" placeholder={'Имя категории'} className={'category-input'} onChange={onChange} value={state.text}/>
+      <pre>
+        {(window as any).Telegram.WebApp}
+      </pre>
       <button className={'submit-btn'} onClick={submit}>Добавить</button>
     </div>
   );
